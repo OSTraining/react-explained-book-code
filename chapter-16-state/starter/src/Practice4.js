@@ -13,28 +13,28 @@ import React from "react";
 */
 
 class Practice4 extends React.Component {
-  /*
+	/*
     5. Setup state with a count property set to 0
   */
 
-  /*
+	/*
     6. Create an incremenent function that adds one to the value of count in state
     7. Create a decremenent function that subtracts one from the value of count in state
     8. Create a reset function that sets the value of count in state back to 0
   */
 
-  render() {
-    return (
-      <>
-        {/*
+	render() {
+		return (
+			<>
+				{/*
           9. Call Header and pass in the counter state as the text prop
           10. Call Button with onClick set to decrement and text "-"
           11. Call Button with onClick set to increment and text "+"
           12. Call Button with onClick set to reset and text "Reset"
         */}
-      </>
-    );
-  }
+			</>
+		);
+	}
 }
 
 export default Practice4;
