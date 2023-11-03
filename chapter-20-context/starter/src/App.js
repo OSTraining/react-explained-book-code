@@ -10,39 +10,39 @@ import ProgressBar from "./components/ProgressBar";
 import "./App.css";
 
 class App extends React.Component {
-  state = {
-    user: {},
-    step: `1`,
-  };
+	state = {
+		user: {},
+		step: `1`,
+	};
 
-  updateUser = (user) => {
-    this.setState({ user });
-  };
+	updateUser = (user) => {
+		this.setState({ user });
+	};
 
-  updateStep = (step) => {
-    this.setState({ step });
-  };
+	updateStep = (step) => {
+		this.setState({ step });
+	};
 
-  render() {
-    return (
-      <div>
-        <Header>
-          <NavBar>
-            Signup Steps:
-            <NavBarStep step="1" />
-            <NavBarStep step="2" />
-            <NavBarStep step="3" />
-          </NavBar>
-        </Header>
-        <MainContent>
-          <SignUpForm />
-        </MainContent>
-        <Footer>
-          <ProgressBar />
-        </Footer>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				<Header>
+					<NavBar>
+						Signup Steps:
+						<NavBarStep step="1" />
+						<NavBarStep step="2" />
+						<NavBarStep step="3" />
+					</NavBar>
+				</Header>
+				<MainContent>
+					<SignUpForm />
+				</MainContent>
+				<Footer>
+					<ProgressBar />
+				</Footer>
+			</div>
+		);
+	}
 }
 
 export default App;
