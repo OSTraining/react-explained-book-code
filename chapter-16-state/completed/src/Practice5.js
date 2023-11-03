@@ -1,47 +1,56 @@
 import React from "react";
 /*
-  1. Make sure Create React App is stopped
-  2. Run `npm install react-simple-storage` 
-  3. Start Create React App back up again with `npm start`
-  4. Import SimpleStorage from "react-simple-storage"
+  1. Make sure Create React App is running.
+  2. When a minimum or maximum is reached, display a message.
 */
-import SimpleStorage from "react-simple-storage";
 
-const Header = props => <h2>{props.text}</h2>;
+const Header = (props) => <h2>{props.text}</h2>;
 
-const Button = props => <button onClick={props.onClick}>{props.text}</button>;
+const Button = (props) => <button onClick={props.onClick}>{props.text}</button>;
 
 class Practice5 extends React.Component {
-  state = {
-    count: 0
-  };
+	state = {
+		count: 0,
+	};
 
-  increment = () => {
-    this.setState({ count: this.state.count + 1 });
-  };
+	minMaxReached = (newCount) => {
+		if (5 < Math.abs(newCount)) {
+			alert("You've reached the minimum or maximum value!");
+			return true;
+		}
+		return false;
+	};
 
-  decrement = () => {
-    this.setState({ count: this.state.count - 1 });
-  };
+	increment = () => {
+		const newCount = this.state.count + 1;
+		if (this.minMaxReached(newCount)) {
+			return;
+		}
+		this.setState({ count: newCount });
+	};
 
-  reset = () => {
-    this.setState({ count: 0 });
-  };
+	decrement = () => {
+		const newCount = this.state.count - 1;
+		if (this.minMaxReached(newCount)) {
+			return;
+		}
+		this.setState({ count: newCount });
+	};
 
-  render() {
-    return (
-      <>
-        {/*
-          5. Call <SimpleStorage parent={this} />
-        */}
-        <SimpleStorage parent={this} />
-        <Header text={this.state.count} />
-        <Button onClick={this.decrement} text="-" />
-        <Button onClick={this.increment} text="+" />
-        <Button onClick={this.reset} text="Reset" />
-      </>
-    );
-  }
+	reset = () => {
+		this.setState({ count: 0 });
+	};
+
+	render() {
+		return (
+			<>
+				<Header text={this.state.count} />
+				<Button onClick={this.decrement} text="-" />
+				<Button onClick={this.increment} text="+" />
+				<Button onClick={this.reset} text="Reset" />
+			</>
+		);
+	}
 }
 
 export default Practice5;
