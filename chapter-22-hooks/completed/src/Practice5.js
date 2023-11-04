@@ -13,43 +13,39 @@ import FormContext from "./context/FormContext";
 import "./Practice5.css";
 
 const Practice5 = () => {
-  const [user, setUser] = useState({});
-  const [step, setStep] = useState(`1`);
+	const [user, setUser] = useState({});
+	const [step, setStep] = useState(`1`);
 
-  const updateUser = (user) => {
-    setUser({ user });
-  };
+	const updateUser = (user) => {
+		setUser({ user });
+	};
 
-  const updateStep = (step) => {
-    setStep({ step });
-  };
+	const updateStep = (step) => {
+		setStep({ step });
+	};
 
-  return (
-    <div>
-      <UserContext.Provider
-        value={{ user: this.state.user, updateUser: this.updateUser }}
-      >
-        <FormContext.Provider
-          value={{ step: this.state.step, updateStep: this.updateStep }}
-        >
-          <Header>
-            <NavBar>
-              Signup Steps:
-              <NavBarStep step="1" />
-              <NavBarStep step="2" />
-              <NavBarStep step="3" />
-            </NavBar>
-          </Header>
-          <MainContent>
-            <SignUpForm />
-          </MainContent>
-          <Footer>
-            <ProgressBar />
-          </Footer>
-        </FormContext.Provider>
-      </UserContext.Provider>
-    </div>
-  );
+	return (
+		<div>
+			<UserContext.Provider value={{ user: user, updateUser: updateUser }}>
+				<FormContext.Provider value={{ step: step, updateStep: updateStep }}>
+					<Header>
+						<NavBar>
+							Signup Steps:
+							<NavBarStep step="1" />
+							<NavBarStep step="2" />
+							<NavBarStep step="3" />
+						</NavBar>
+					</Header>
+					<MainContent>
+						<SignUpForm />
+					</MainContent>
+					<Footer>
+						<ProgressBar />
+					</Footer>
+				</FormContext.Provider>
+			</UserContext.Provider>
+		</div>
+	);
 };
 
 export default Practice5;
