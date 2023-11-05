@@ -1,4 +1,4 @@
-import { useParams, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
 const Post = (props) => {
 	const post = useLoaderData();
