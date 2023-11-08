@@ -85,7 +85,8 @@
 	padding: 1rem;
 }
 
-.App form input {
+.App form input,
+.App form textarea {
 	border: 1px solid #ccc;
 	padding: 0.3rem;
 }
@@ -96,7 +97,6 @@
 }
 
 .App form input#form-title {
-	min-width: calc(100% - 20px);
 	padding: 10px;
 	font-size: 1rem;
 }

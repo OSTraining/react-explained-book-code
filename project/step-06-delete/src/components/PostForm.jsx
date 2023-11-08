@@ -1,11 +1,12 @@
+import React from "react";
+
 import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Quill from "react-quill";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import { useOutletContext } from "react-router-dom";
 import { getPostBySlug } from "../utils/utils";
 import { defaultPost } from "../utils/utils";
-
-import "react-quill/dist/quill.snow.css";
 
 const PostForm = (props) => {
 	const defaultPost = { id: 0, slug: "", title: "", content: "" };
@@ -16,12 +17,11 @@ const PostForm = (props) => {
 	const {
 		postsContext: [posts, setPosts],
 	} = useOutletContext();
-
 	const postToEdit =
 		"create" === action
 			? defaultPost
 			: getPostBySlug({ postSlug }, posts) ?? defaultPost;
-
+	console.log(postToEdit);
 	const [post, setPost] = useState(postToEdit);
 
 	// Clear out form on action change.
@@ -94,7 +94,7 @@ const PostForm = (props) => {
 			<p>
 				<label htmlFor="form-content">Content:</label>
 			</p>
-			<Quill
+			<ReactQuill
 				ref={quillRef}
 				value={post.content}
 				onChange={(content, delta, source, editor) => {
@@ -104,6 +104,13 @@ const PostForm = (props) => {
 					});
 				}}
 			/>
+			{/* <textarea
+				defaultValue={post.content}
+				id="form-content"
+				rows={10}
+				cols={40}
+				onChange={(event) => setPost({ ...post, content: event.target.value })}
+			/> */}
 			<p>
 				<button type="submit">Save</button>
 			</p>

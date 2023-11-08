@@ -1,3 +1,5 @@
+import React from "react";
+
 const Message = ({ type }) => {
 	const messages = {
 		saved: "Post has been saved!",
