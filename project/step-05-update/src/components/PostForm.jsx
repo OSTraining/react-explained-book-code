@@ -24,22 +24,21 @@ const PostForm = (props) => {
 
 	const [post, setPost] = useState(postToEdit);
 
-	// @todo change these refs to check against the action
+	// Clear out form on action change.
 	const prevPostRef = useRef();
+	const prevActionRef = useRef();
 	useEffect(() => {
 		prevPostRef.current = post;
+		prevActionRef.current = action;
 	}, [post]);
 	const prevPost = prevPostRef.current;
+	const prevAction = prevActionRef.current;
 
 	const quillRef = useRef();
 	useEffect(() => {
-		if (prevPost && quillRef.current) {
-			console.log(prevPost.id)
-			console.log(post.id)
-
-			if (post.id !== prevPost.id) {
-				console.log('not here')
-				setPost({ ...post });
+		if (prevAction && quillRef.current) {			
+			if (prevAction !== action) {
+				setPost(defaultPost);
 				quillRef.current.getEditor().setContents(``);
 			}
 		}
