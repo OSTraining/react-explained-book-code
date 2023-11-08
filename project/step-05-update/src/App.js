@@ -16,11 +16,11 @@ const App = (props) => {
 	};
 
 	return (
-		<>
+		<div className="App">
 			<Header />
 			{message && <Message type={message} />}
 			<Outlet context={{ postsContext: [posts, setPosts], setFlashMessage: setFlashMessage }}  />
-		</>
+		</div>
 	);
 };
 export default App;

@@ -15,11 +15,25 @@ const App = (props) => {
 		}, 1600);
 	};
 
+	const deletePost = (post) => {
+		if (window.confirm("Delete this post?")) {
+			const updatedPosts = posts.filter((p) => p.id !== post.id);
+			setPosts(updatedPosts);
+			setFlashMessage(`deleted`);
+		}
+	};
+
 	return (
 		<div className="App">
 			<Header />
 			{message && <Message type={message} />}
-			<Outlet context={{ postsContext: [posts, setPosts], setFlashMessage: setFlashMessage }}  />
+			<Outlet
+				context={{
+					postsContext: [posts, setPosts],
+					setFlashMessage: setFlashMessage,
+					deletePost: deletePost,
+				}}
+			/>
 		</div>
 	);
 };
