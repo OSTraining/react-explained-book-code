@@ -1,14 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import ReactDOM from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
+
+import router from "./routes/router";
 
 import "./index.css";
-import appService from "./appService";
-import * as serviceWorker from "./serviceWorker";
 
-ReactDOM.render(
-  <App appService={appService} />,
-  document.getElementById("root")
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+	<React.StrictMode>
+		<RouterProvider router={router} />
+	</React.StrictMode>
 );
-
-serviceWorker.unregister();
