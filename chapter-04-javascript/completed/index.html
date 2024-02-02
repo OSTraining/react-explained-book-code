@@ -1,138 +1,226 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chapter 1 - JavaScript Practice Exercises</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Chapter 1 - JavaScript Practice Exercises</title>
-</head>
-
-<body>
-  <div id="root"></div>
-  <script>
-
-    // Practice 1 - const, let, freeze
-    // Create a variable named "username" that should not be reassigned
-    // Create a variable named "loggedIn" that can be reassigned
-    // Create a post object with an id and title that is frozen
-    // Test whether you can reassign each of the variables
-    // Log out each of the variables to the page
-    const username = "zgordon";
-    const post = {
-      id: 1,
-      title: "First post"
-    }
-    Object.freeze(post);
-
-    let loggedIn = true;
-
-    // Try changing the variables
-    // username = "test";
-    // loggedIn = false;
-    // post.id = 0;
-
-    console.log(username);
-    console.log(loggedIn);
-    console.log(post);
-
-
-
-    // Practice 2 - Template Literals
-    // Create a variable for firstName and lastName
-    // Create a variable called message that can be reassigned
-    // Use a template literal to create message like "Hi firstName lastName!"
-    // Log out the message to the console
-    const firstName = "Zac";
-    const lastName = "Gordon"
-
-    let message = `Hi ${firstName} ${lastName}!`;
-
-    console.log(message);
-
-
-    // Practice 3 - Arrow Functions
-    // Rewrite the function MyName using arrow function syntax
-    // Name the arrow function ArrowName
-    // Log the value of ArrowName passing in your name as a parameter
-
-    function MyName(name) {
-      return (
-        `<p>${name}<p>`
-      )
-    }
-
-    // Written on multiple lines
-    const ArrowName = name => (
-      `<p>${name}<p>`
-    )
-
-    // Or written on one line
-    // const MyName = name => `<p>${name}<p>`
-
-    console.log(MyName("ZG"));
-
-
-    // Practice 4 - .filter() and .map()
-    // Filter the array of posts into a filteredPost variable
-    // Only return the posts that include "post" in the title
-    // Map through the array of filtred posts and log out the titles
-    // Try writing it by chaining the filter and map together
-    const posts = [
-      {
-        id: 1,
-        title: "First post"
-      },
-      {
-        id: 2,
-        title: "Second post"
-      },
-      {
-        id: 3,
-        title: "Last one"
+  <body>
+    <div id="root"></div>
+    <script>
+      // Practice 2 - Statements vs Expressions
+      const title = 'Welcome!';
+      function greet(title) {
+        console.log(title);
       }
-    ];
 
-    let filteredPosts = posts
-      .filter(post => post.title.includes("post"))
-      .map(post => console.log(post.title));
-
-
-    // Practice 5 - DOM Creation
-    // Map over the postsArray
-    // User document.createElement and document.createTextNode 
-    //  to create an h2 with a link and the title of the post
-    // Append each of the h2s to the postsContainer
-    const postsContainer = document.getElementById("root");
-    const postsArray = [
-      {
-        id: 1,
-        slug: "#first-post",
-        title: "First post"
-      },
-      {
-        id: 2,
-        slug: "#second-post",
-        title: "Second post"
-      },
-      {
-        id: 3,
-        slug: "#last-one",
-        title: "Last one"
+      const form = document.querySelector('form');
+      form.addEventListener('submit', displayPost);
+      function displayPost(event) {
+        const title = document.getElementById('title').value;
+        const content = document.getElementById('content').value;
+        event.preventDefault();
+        console.log(title);
+        console.log(content);
       }
-    ];
 
-    postsArray.map(post => {
-      const h2 = document.createElement("h2");
-      const link = document.createElement("a");
-      const title = document.createTextNode(post.title);
+      // Practice 3 - const, let, freeze
+      const name = 'Ada Lovelace';
+      let location = 'London';
+      name = 'React'; // Throws error
+      // Allowed const ids = [1, 2, 3];
+      location = 'Internet';
+      const post = { id: 1, title: 'New Post' };
+      ids.push(4, 5); // Allowed to add to array
+      ids.pop(); // Allowed to remove from array
+      ids[0] = 0; // NOT allowed to reassign values
+      // NOT allowed to reassign object itself
+      post = { id: 2, title: 'New post' };
+      // Allowed to add new properties and methods
+      post.slug = 'new-post';
+      // Allowed to reassign properties and methods
+      post.id = 2;
+      // Allowed to remove properties and methods
+      delete post.title;
 
-      link.appendChild(title);
-      link.href = post.slug;
-      h2.appendChild(link);
+      const ids = [1, 2, 3];
+      const post = {
+        id: 1,
+        title: 'New Post',
+      };
+      Object.freeze(ids); // Freeze the ids array
+      Object.freeze(post); // Freeze the post object
+      ids.push(4, 5); // NOT allowed to add to array
+      ids.pop(); // NOT allowed to remove from array
+      id[0] = 0; // NOT allowed to reassign values
+      // NOT allowed to add new properties
+      post.slug = 'new-post';
+      // NOT allowed to reassign values to properties
+      post.id = 2;
+      // NOT allowed to remove properties
+      delete post.title;
 
-      postsContainer.appendChild(h2);
-    });
+      // Practice 4 - Template Literals
+      // Logs "Hi Ada Lovelace! Welcome :)"
+      const name = 'Ada Lovelace';
+      console.log(`Hi ${name}! Welcome :)`);
 
-  </script>
-</body>
+      const first = 'Ada';
+      const last = 'Lovelace';
+      const longMsg = `Welcome ${first}! We
+        see
+        your
+        last name is ${last}`;
+      console.log(longMsg);
 
+      // Practice 5 - Arrow Functions
+      const render = (title) => console.log(title);
+      render('New Post'); // Logs "New Post"
+
+      const render = (id, title) => console.log(`${id}: ${title}`);
+      render(1, 'New Post'); // Logs "1: New Post"
+
+      const render = (id, title) => `${id}: ${title}`; // Logs "1: New Post"
+      console.log(render(1, 'New Post'));
+
+      // Practice 6 - JavaScript Classes
+      class Example extends Component {
+        constructor(args) {
+          super(args);
+          this.state = {
+            message: 'A message in state',
+          };
+        }
+        render() {
+          return `Message: ${this.state.message}`;
+        }
+      }
+
+      class Example2 extends Component {
+        state = {
+          message: 'A message in state',
+        };
+        render() {
+          return `Message: ${this.state.message}`;
+        }
+      }
+
+      // Practice 7 - How "this" works
+      const post = { id: 1, slug: `post-${this.id}`, title: 'First post' };
+      console.log(post.slug); // post-1
+
+      function render() {
+        this.id = post.id;
+        console.log(this.id);
+      }
+      render({ id: 1 }); // 1
+
+      function render() {
+        console.log(this.id);
+      }
+      // undefined (or window in non strict mode)
+      render({ id: 1 });
+
+      const post = { id: 1 };
+      function render() {
+        console.log(this.id);
+      }
+      render.call(post); // 1
+
+      const link = document.getElementById('link');
+      const post = { id: 1, title: 'Hello bind()!' };
+      link.addEventListener('click', renderTitle.bind(post));
+      function renderTitle() {
+        console.log(this.title);
+      }
+
+      // Practice 8 - Ternary Conditionals
+      let loggedIn = true;
+      if (loggedIn) {
+        console.log('Welcome!');
+      } else {
+        console.log('Please login');
+      }
+      let loggedIn = true;
+      let message = loggedIn ? 'Welcome' : 'Please login';
+      console.log(message); // "Welcome"
+
+      // Practice 9 - Spread Syntax and Destructuring
+      const nums = [11, 22, 33];
+      function add(first, second, third) {
+        return first + second + third;
+      }
+      let total = add(...nums);
+      console.log(total); // Returns 66
+
+      const postIds = [1, 2, 3];
+      const newPostIds = [4, 5, 6, 7];
+      postIds.push(...newPostIds);
+      console.log(postIds); // Logs 1, 2, 3, 4, 5, 6, 7
+
+      const library = {
+        render: () => console.log('Rendered'),
+        save: () => console.log('Saved'),
+        update: () => console.log('Updated'),
+        push: () => console.log('Pushed'),
+      };
+      const { render, push: notify } = library;
+      render(); // Logs Rendered
+      notify(); // Logs Pushed
+
+      // Practice 10 - .filter(), .map(), .reduce()
+      let newPosts = posts.filter((post) => {
+        return post.title.includes('React');
+      });
+
+      let newPosts = posts.filter((post) => post.title.includes('React'));
+
+      let newPosts = posts.map((post) => render(post));
+
+      const prices = [19, 39, 209];
+      let average = prices.reduce((total, price, index) => {
+        total += price;
+        if (prices.length - 1 === index) {
+          return total / prices.length;
+        } else {
+          return total;
+        }
+      });
+      // Logs Average: $89 console.log(`Average: $${average}`);
+
+      // Practice 11 - DOM Node Creation
+      function createHeader(post) {
+        const container = document.getElementById('page');
+        const header = document.createElement('h2');
+        const link = document.createElement('a');
+        const text = document.createTextNode(post.title);
+        header.classList.add('post-title');
+        link.href = post.link;
+        link.appendChild(text);
+        header.appendChild(link);
+        container.appendChild(header);
+      }
+
+      // Practice 12 - JS Imports and Exports
+      import React from 'react';
+      import MyComponent from './MyComponent';
+      import './App.css';
+      class Example extends React.Component {
+        render() {
+          return <MyComponent />;
+        }
+      }
+      export default Example;
+
+      import Example from './Example';
+      const name = 'React';
+      const ids = [1, 2, 3, 4, 5];
+      function render() {
+        console.log('Rendered');
+      }
+      export { name, ids, render };
+
+      import { name, render: display } from './FileName';
+    </script>
+  </body>
 </html>
