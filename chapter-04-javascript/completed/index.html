@@ -26,10 +26,10 @@
 
       // Practice 3 - const, let, freeze
       const name = 'Ada Lovelace';
-      let location = 'London';
+      let city = 'London';
       name = 'React'; // Throws error
       // Allowed const ids = [1, 2, 3];
-      location = 'Internet';
+      city = 'Internet';
       const post = { id: 1, title: 'New Post' };
       ids.push(4, 5); // Allowed to add to array
       ids.pop(); // Allowed to remove from array
@@ -109,20 +109,20 @@
       const post = { id: 1, slug: `post-${this.id}`, title: 'First post' };
       console.log(post.slug); // post-1
 
-      function render() {
+      function render(post) {
         this.id = post.id;
         console.log(this.id);
       }
       render({ id: 1 }); // 1
 
-      function render() {
+      function render(post) {
         console.log(this.id);
       }
       // undefined (or window in non strict mode)
       render({ id: 1 });
 
       const post = { id: 1 };
-      function render() {
+      function render(post) {
         console.log(this.id);
       }
       render.call(post); // 1
