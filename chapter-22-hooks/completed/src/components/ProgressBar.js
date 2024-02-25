@@ -1,11 +1,11 @@
-import React from "react";
-import FormContext from "../context/FormContext";
+import React, { useContext } from 'react';
+import FormContext from '../context/FormContext';
 
-class ProgressBar extends React.Component {
-  static contextType = FormContext;
+const ProgressBar = () => {
+  const formContext = useContext(FormContext);
 
-  getPercent = () => {
-    switch (this.context.step) {
+  const getPercent = () => {
+    switch (formContext.step) {
       case `2`:
         return 33;
       case `3`:
@@ -17,28 +17,25 @@ class ProgressBar extends React.Component {
     }
   };
 
-  render() {
-    return (
-      <>
-        <p>Progress</p>
+  return (
+    <>
+      <p>Progress</p>
+      <div
+        style={{
+          height: `10px`,
+          width: `300px`,
+          border: `1px #ccc solid`,
+          background: `#efefef`,
+        }}>
         <div
           style={{
-            height: `10px`,
-            width: `300px`,
-            border: `1px #ccc solid`,
-            background: `#efefef`,
+            height: `100%`,
+            background: `green`,
+            width: `${getPercent()}%`,
           }}
-        >
-          <div
-            style={{
-              height: `100%`,
-              background: `green`,
-              width: `${this.getPercent()}%`,
-            }}
-          />
-        </div>
-      </>
-    );
-  }
-}
+        />
+      </div>
+    </>
+  );
+};
 export default ProgressBar;

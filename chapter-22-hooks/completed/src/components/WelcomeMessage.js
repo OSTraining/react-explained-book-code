@@ -1,16 +1,15 @@
-import React from "react";
-import UserContext from "../context/UserContext";
+import React, { useContext } from 'react';
+import UserContext from '../context/UserContext';
 
-class WelcomeMessage extends React.Component {
-  static contextType = UserContext;
-  render() {
-    return (
-      <div>
-        <h1>Welcome {this.context.user.name}!</h1>
-        <p>Your account info has been sent to {this.context.user.email}.</p>
-      </div>
-    );
-  }
-}
+const WelcomeMessage = () => {
+  const userContext = useContext(UserContext);
+
+  return (
+    <div>
+      <h1>Welcome {userContext.user.name}!</h1>
+      <p>Your account info has been sent to {userContext.user.email}.</p>
+    </div>
+  );
+};
 
 export default WelcomeMessage;

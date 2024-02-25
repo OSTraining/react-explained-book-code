@@ -1,24 +1,24 @@
-import React from "react";
+import React, {useContext} from "react";
 import FormContext from "../context/FormContext";
 
-class WelcomeMessage extends React.Component {
-  static contextType = FormContext;
+const WelcomeMessage = (props) => {
+  const formContext = useContext( FormContext);
+  console.log(formContext)
+  console.log(props)
+  const isActive = () => (formContext.step === props.step ? true : false);
 
-  isActive = () => (this.context.step === this.props.step ? true : false);
+  const updateStep = () => formContext.updateStep(props.step);
 
-  updateStep = () => this.context.updateStep(this.props.step);
 
-  render() {
     return (
       <button
-        className={this.isActive() ? `active` : ``}
-        disabled={this.context.step === `completed` ? true : false}
-        onClick={this.updateStep}
+        className={isActive() ? `active` : ``}
+        disabled={formContext.step === `completed` ? true : false}
+        onClick={updateStep}
       >
-        {this.props.step}
+        {props.step}
       </button>
-    );
-  }
+    )
 }
 
 export default WelcomeMessage;
