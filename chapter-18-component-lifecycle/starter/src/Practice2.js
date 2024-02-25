@@ -13,7 +13,7 @@ class Practice2 extends React.Component {
   };
   /* 
     1. Add the method componentDidMount()
-    2. Call fetch("https://dev-react-explained-api.pantheonsite.io/wp-json/wp/v2/posts")
+    2. Call fetch("https://make.wordpress.org/wp-json/wp/v2/handbook")
     3. Then call .json() on the response
     4. Take that and set it as the value of posts in state
     5  Add a catch to log out any errors
