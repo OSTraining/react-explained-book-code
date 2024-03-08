@@ -13,7 +13,7 @@ const App = (props) => {
 	const [posts, setPosts] = useLocalStorageState("posts", {
 		defaultValue: [],
 	});
-	const [user, setuser] = useLocalStorageState("user", {
+	const [user, setUser] = useLocalStorageState("user", {
 		defaultValue: [],
 	});
 	const [message, setMessage] = useState(null);
@@ -22,7 +22,7 @@ const App = (props) => {
 		signInWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				const user = userCredential.user;
-				setuser({
+				setUser({
 					email: user.email,
 					isAuthenticated: true,
 				});
@@ -35,7 +35,7 @@ const App = (props) => {
 
 	const onLogout = () => {
 		signOut(auth);
-		setuser({
+		setUser({
 			email: "",
 			isAuthenticated: false,
 		});
